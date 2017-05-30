@@ -1,0 +1,12 @@
+
+IL sequenziatore che andremmo ad utilizzare viene denominato "Quickstepper" e,
+come nei casi precendenti, è un organo atto ad ovviare al problema delle 
+intereferenze di segnali all'interno delle valvole bistabili.
+Il sequeziatore presenta 12 ingressi (x1, x2, x3 ... ) e 12 uscite (a1, a2, a3 ... )
+più degli ingressi per: alimentazione ( P ), alimentazione reset ( L ) e altre funzioni.
+Nel ciclo svolto nell'esercitazione, andremmo ad utilizzare 5 ingressi e 5 uscite sul 
+sequenziatore collegate nel seguente ordine: Colleghiamo lo start in AND con il finecorsa 1.3,
+in modo da garantire il pasaggio di aria solo quando lo stelo del cilindro 2 è all'interno del cilindro,
+e l'uscita della valvola AND collegata successivamente in AND con il finecorsa 1.4 di rientro del cilindro 1. 
+Lo start viene alimentato dall'ultima uscita del sequenziatore, mentre tutte le uscite ed entrare superflue vengono cortocircuitate
+perché non utilizzate. Il resto viene collegato in modo da rispettare il ciclo sequenziale precedentemente utilizzato.
