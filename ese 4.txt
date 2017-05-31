@@ -1,0 +1,90 @@
+Introduzione generale
+
+In questa esercitazione si deve realizzare un circuito finalizzato a eseguire il ciclo pneumatico della rivettatura di due lamiere attraverso due diversi cilindri A e B, e osservare i diversi comportamenti del funzionamento in due casi distinti: 
+1) Con l’impiego di fine corsa unidirezionali, Saltarelli
+2) Con l’impiego di sequenziatori pneumatici
+
+
+Strumenti utilizzati
+
+Prova 1
+
+Parte 1:
+-Cilindro pneumatico a doppio effetto x2
+-Valvola bistabile a comando pneumatico 4/2 x2
+-Guide in alluminio
+-Valvola monostabile di fine corsa unidirezionale a saltarello x3
+-Tubi in poliuretano
+-Valvola monostabile 3/2 con comando a pulsante
+-Strozzatore unidirezionale x4
+-Alimentatore
+
+Parte 2:
+-Cilindro pneumatico a doppio effetto x2
+-Valvola bistabile a comando pneumatico 4/2 x2
+-Guide in alluminio
+-Valvola monostabile di fine corsa unidirezionale a saltarello x3
+-Valvola monostabile di fine corsa bidirezionale
+-Tubi in poliuretano
+-Strozzatore unidirezionale x4
+-Valvola monostabile 3/2 con comando a pulsante
+-Valvola di comando bistabile a switch
+-Alimentatore
+
+Prova 2
+-Cilindro pneumatico a doppio effetto x2
+-Valvola bistabile a comando pneumatico 4/2 x2
+-Guide in alluminio
+-Valvola monostabile di fine corsa bidirezionale x4
+-Valvola monostabile 3/2 a comando a pulsante x2
+-Tubi in poliuretano
+-Strozzatore unidirezionale x4
+-Sequenziatore Crouzet / Quickstepper
+-Alimentatore
+
+
+[Inserire Movimento fasi dei due cilindri e delle valvole]
+
+
+Descrizione breve:
+
+Prova 1
+Costruiamo un circuito che comprende due cilindri A e B pneumatici a doppio effetto, affinché compiano una lavorazione di rivettatura tra due lamine. Il ciclo si svolge nel modo seguente: il cilindro A esce e blocca il pezzo, il cilindro B esce ed esegue la rivettatura, il cilindro B rientra, ed infine il cilindro A rientra.
+
+Parte 1
+Nella prima parte della prima prova inseriamo nel ciclo solo una valvola pulsante di avviamento. In questo modo il ciclo dovrà essere riavviato manualmente attraverso il pulsante. Questo schema viene costruito come test di funzionamento prima dell’effettivo schema richiesto dal testo dell’esercitazione.
+
+[inserire schema Esercizio 1 parte 1]
+
+
+Parte 2
+Per la seconda parte della prima prova, aggiungiamo al nostro sistema alcune condizioni marginali;
+Dobbiamo includere, per la tecnica con i saltarelli:
+1.Pulsante di avviamento ciclo
+2.Leva ciclo singolo/ciclo continuo
+Completata la realizzazione del circuito, azioniamo il ciclo nella modalità di ciclo singolo, e successivamente quella a ciclo continuo, e osserviamone i comportamenti e le differenze. In questo caso, quando selezioniamo con la leva il ciclo continuo, non dobbiamo più intervenire per riattivare il processo ma questo ricomincerà automaticamente.
+
+[inserire schema Esercizio 1 parte 2]
+
+Conclusione
+
+Generato uno schema preliminare dell'impianto di automazione completo di nomenclatura, il grafico fasi-movimenti inerenti ad entrambi gli attuatori e lo schema dei segnali di ogni singola valvola atta a mandare segnali di pressione per pilotare le valvole bistabili, andiamo finalmente a generare con dati alla mano, uno schema ben definitivo atto a risolvere tutti i problemi che si presentano nell'impianto. 
+In una prima analisi, se si scegliesse di utilizzare un semplice schema basilare strutturato da 1 pulsante start, 3 finecorsa bidirezionali che pilotano le 2 bistabili rispettando il grafico fasi-movimenti precedentemente generato, si verrebbero a creare dei contrasti di segnali sulle bistabili che pilotano gli attuatori, in modo da non permettere la giusta esecuzione del ciclo. Il problema che si va a generare con il suddetto schema provvisorio è essenzialmente dovuto dalla persistenza dei segnali di comando provenienti dai vari finecorsa e presenti sulla stessa bistabile, impedendo quindi la commutazione della valvola stessa da parte dell'ultimo segnale che arriva in ordine temporale. 
+Una possibile soluzione che abbiamo scelto per risolvere il nostro problema, è quello di sostituire in modo adeguato i finecorsa bidirezionali con dei finecorsa monodirezionali (denominati salterelli) in modo da avere solo impulsi di pressione provenienti da i fine corsa, ed evitare di avere segnali continui che andranno ad interferire con altri segnali sulla stessa fase. Questo assetto va ad evitare che ci siano segnali di comando continui e che i fine corsa mandino solo impulsi di comando alle bistabili commutandole.
+Dopo vari tentativi al fine di trovare il perfetto utilizzo e posizionamento dei finecorsa unidirezionali, si va a redigere lo schema definitivo dell'impianto definitivo.
+In conclusione utilizzando i finecorsa a salterelli possiamo trasformare i segmenti di segnale che si verrebbero a creare con un semplice finecorsa con leva meccanica in impulsi di segnale in modo da non generare interferenze che andrebbero a bloccare tutto il nostro sistema.
+
+
+
+Prova 2
+Il compito svolto dai saltarelli può essere svolto da un sequenziatore. In questa prova modifichiamo il circuito precedente per inserire prima il sequenziatore Crouzet e successivamente il Quickstepper.
+
+[inserire schema sequenziatore Crouzet]
+
+Collegando tutti i mandanti di segnale del nostro schema con il sequenziatore, tutti i riceventi, un pulsante di start, uno di reset e alimentando il tutto possiamo gestire tutte le connessioni in modo da non avere sovrapposizioni di segnale.
+
+[inserire schema Quickstepper]
+
+Anche il sequenziatore "Quickstepper" è un organo atto ad ovviare al problema delle interferenze di segnali all'interno delle valvole bistabili. Il sequenziatore presenta 12 ingressi (x1, x2, x3 ... ) e 12 uscite (a1, a2, a3 ... ) più degli ingressi per: alimentazione ( P ), alimentazione reset ( L ) e altre funzioni. Nel ciclo svolto nell'esercitazione, andremmo ad utilizzare 5 ingressi e 5 uscite sul sequenziatore collegate nel seguente ordine: Colleghiamo lo start in AND con il finecorsa 1.3, in modo da garantire il passaggio di aria solo quando lo stelo del cilindro 2 è all'interno del cilindro, e l'uscita della valvola AND collegata successivamente in AND con il finecorsa 1.4 di rientro del cilindro 1. Lo start viene alimentato dall'ultima uscita del sequenziatore, mentre tutte le uscite ed entrate superflue vengono cortocircuitate perché non utilizzate. Il resto viene collegato in modo da rispettare il ciclo sequenziale precedentemente utilizzato.
+
+
