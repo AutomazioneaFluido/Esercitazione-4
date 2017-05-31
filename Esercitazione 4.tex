@@ -1,0 +1,195 @@
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[italian,english]{babel}
+\usepackage{amssymb,latexsym,amsfonts,amsmath}
+\usepackage{lipsum}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage[enable-survey]{pdfpages}
+
+
+\begin{document}
+
+\title{Esercitazione 4}
+\date{April 5 , 2017}
+\maketitle
+
+
+\author{Alessio Susco \hspace*{2cm} Nicola Bomba \hspace*{2cm} Fabrizio Ursini  \\  \hspace*{1,85cm} Alessandra Di Martino \hspace*{1,25cm} Diego Guzman}
+
+\includepdf[pages={1,2},pagecommand={\thispagestyle{plain}}]{eserc4.pdf} 
+
+\tableofcontents
+
+\clearpage
+
+\section{Introduzione Generale}
+In questa esercitazione si deve realizzare un circuito finalizzato a eseguire il ciclo pneumatico della rivettatura di due lamiere attraverso due diversi cilindri A e B, e osservare i diversi comportamenti del funzionamento in due casi distinti: 
+\begin{itemize}
+\item Con l’impiego di fine corsa unidirezionali, Saltarelli;
+\item Con l’impiego di sequenziatori pneumatici.
+\end{itemize}
+Nei due casi bisogna rispettare delle condizioni marginali, elencate di seguito.
+
+\section{Strumenti Utilizzati}
+
+\subsection{Esercizio 1}
+
+\subsubsection{Parte 1}
+\begin{itemize}
+\item Cilindro pneumatico a doppio effetto x2;
+\item Valvola bistabile a comando pneumatico 4/2 x2;
+\item Guide in alluminio;
+\item Valvola monostabile di fine corsa unidirezionale a saltarello x3;
+\item Tubi in poliuretano
+\item Valvola monostabile 3/2 con comando a pulsante;
+\item Strozzatore unidirezionale x4;
+\item Alimentatore.
+\end{itemize}
+
+
+\subsubsection{Parte 2}
+\begin{itemize}
+\item Cilindro pneumatico a doppio effetto x2;
+\item Valvola bistabile a comando pneumatico 4/2 x2;
+\item Guide in alluminio;
+\item Valvola monostabile di fine corsa unidirezionale a saltarello x3;
+\item Tubi in poliuretano;
+\item Strozzatore unidirezionale x4;
+\item Valvola monostabile 3/2 con comando a pulsante;
+\item Valvola di comando bistabile a switch;
+\item Alimentatore.
+\end{itemize}
+
+\subsection{Esercizio 2}
+
+\begin{itemize}
+\item Cilindro pneumatico a doppio effetto x2;
+\item Valvola bistabile a comando pneumatico 4/2 x2;
+\item Guide in alluminio;
+\item Valvola monostabile di fine corsa bidirezionale x4;
+\item Valvola monostabile 3/2 a comando a pulsante x2;
+\item Tubi in poliuretano;
+\item Strozzatore unidirezionale x4;
+\item Sequenziatore Crouzet;
+\item Alimentatore.
+\end{itemize}
+
+\section{Osservazione Preliminare}
+\subsection{Esercizio 1}
+Costruiamo un circuito che comprende due cilindri A e B pneumatici a doppio effetto, affinché compiano una lavorazione di rivettatura tra due lamine. Il ciclo si svolge nel modo seguente: il cilindro A esce e blocca il pezzo, il cilindro B esce ed esegue la rivettatura, il cilindro B rientra, ed infine il cilindro A rientra
+\subsubsection{Parte 1}
+Nella prima parte della prima prova inseriamo nel ciclo solo una valvola pulsante di avviamento. In questo modo il ciclo dovrà essere riavviato manualmente attraverso il pulsante. Questo schema viene costruito come test di funzionamento prima dell’effettivo schema richiesto dal testo dell’esercitazione.
+\subsubsection{Parte 2}
+Per la seconda parte della prima prova, aggiungiamo al nostro sistema alcune condizioni marginali;
+Dobbiamo includere, per la tecnica con i saltarelli:
+\begin{itemize}
+\item Pulsante di avviamento ciclo;
+\item Leva ciclo singolo/ciclo continuo.
+\end{itemize}
+
+Completata la realizzazione del circuito, azioniamo il ciclo nella modalità di ciclo singolo, e successivamente quella a ciclo continuo, e osserviamone i comportamenti e le differenze. In questo caso, quando selezioniamo con la leva il ciclo continuo, non dobbiamo più intervenire per riattivare il processo ma questo ricomincerà automaticamente.
+
+\subsection{Esercizio 2}
+Il compito svolto dai saltarelli può essere svolto da un sequenziatore. In questa prova modifichiamo il circuito precedente per inserire il sequenziatore Crouzet, e gli elementi da inserire sono:
+
+\begin{itemize}
+\item Pulsante di avviamento ciclo;
+\item Leva ciclo singolo/ciclo continuo.
+\item Pulsante reset;
+\item Pulsante ripristino dopo reset;
+\item Presenza di 2 segnali di presenza pezzo c1 e c2 per l’avviamento.
+\end{itemize}
+ Nel sequenziatore colleghiamo lo START con la valvola monostabile a pulsante, e le entrate rispettivamente a:
+\begin{enumerate}
+\item R0-> Valvola monostabile di fine corsa bidirezionale 1.4;
+\item R1-> Valvola monostabile di fine corsa bidirezionale 2.2;
+\item R2-> Valvola monostabile di fine corsa bidirezionale 2.3;
+\item R3-> Valvola monostabile di fine corsa bidirezionale 1.3;
+\item R4-> S4.
+\end{enumerate}
+Le uscite sono invece collegate a:
+\begin{enumerate}
+\item S0-> Valvola bistabile 4/2 a comando pneumatico sx 1.1;
+\item S1-> Valvola bistabile 4/2 a comando pneumatico sx 2.1;
+\item S2-> Valvola bistabile 4/2 a comando pneumatico dx 2.1;
+\item S3-> Valvola bistabile 4/2 a comando pneumatico dx 1.1;
+\item S4-> R4.
+\end{enumerate}
+Infine il pulsante RESET è collegato a una valvola monostabile a pulsante come pulsante di emergenza che faccia rientrare tutti i cilindri.
+
+\section{Schema Circuito}
+\subsection{Schema Esercizio 1}
+\subsubsection{Parte 1}
+\begin{center}
+\includegraphics[scale=0.6]{ES4ES1P1}
+\end{center}
+
+\subsubsection{Parte 2}
+\begin{center}
+\includegraphics[scale=0.6]{ES4ES1P2}
+\end{center}
+
+\subsection{Schema Esercizio 2}
+\begin{center}
+\includegraphics[scale=0.6]{ES4ES2P1}
+\end{center}
+
+
+\section{Calcoli}
+\dots
+
+\section{Grafici}
+
+\subsection{Movimento Fasi 1.3}
+\begin{center}
+\includegraphics[scale=0.6]{MF 1-3.png}
+\end{center}
+
+\subsection{Movimento Fasi 2.2}
+\begin{center}
+\includegraphics[scale=0.6]{MF 2-2.png}
+\end{center}
+
+\subsection{Movimento Fasi 2.3}
+\begin{center}
+\includegraphics[scale=0.6]{MF 2-3.png}
+\end{center}
+
+\subsection{Movimento Fasi 1.0}
+\begin{center}
+\includegraphics[scale=0.6]{MFC 1-0.png}
+\end{center}
+
+\subsection{Movimento Fasi 2.0}
+\begin{center}
+\includegraphics[scale=0.6]{MFC 2-0.png}
+\end{center}
+
+\section{Descrizione Approfondita dell'Esercitazione}
+\subsection{Descrizione Esercizio 1}
+
+Giunti nella situazione nella quale: \\
+si \'e generato uno schema preliminare dell'impianto di automazione completo di nomenclatura, il grafico fasi-movimenti inerenti ad entrambi gli attuatori e lo schema dei segnali di ogni singola valvola atta a mandare segnali di pressione per pilotare le valvole bistabili, andiamo finalmente a generare con dati alla mano, uno schema definitivo atto a risolvere tutti i problemi che si presentano nell'impianto. 
+In una prima analisi, se si scegliesse di utilizzare un semplice schema basilare strutturato da:
+\begin{itemize}
+\item Valvola monostabile con comando a pulsante
+\item Valvola monostabile a comando unidirezionale a saltarello x3
+\item Valvola di potenza bistabile 4/2 x2
+\end{itemize}
+e rispettando il grafico fasi-movimenti precedentemente generato, si verrebbero a creare dei contrasti di segnali sulle bistabili che pilotano gli attuatori, in modo da non permettere la giusta esecuzione del ciclo. Il problema che si va a generare con il suddetto schema provvisorio è essenzialmente dovuto alla persistenza dei segnali di comando provenienti dai vari finecorsa e presenti sulla stessa bistabile, impedendo quindi la commutazione della valvola stessa da parte dell'ultimo segnale che arriva in ordine temporale. 
+Una possibile soluzione che abbiamo scelto per risolvere il nostro problema, è quello di sostituire in modo adeguato i finecorsa bidirezionali con dei finecorsa monodirezionali (denominati saltarelli) in modo da avere solo impulsi di pressione provenienti dai fine corsa, ed evitare di avere segnali continui che andranno ad interferire con altri segnali sulla stessa fase. Questo assetto va ad evitare che ci siano segnali di comando continui e che i fine corsa mandino solo impulsi di comando alle bistabili, commutandole.
+Dopo vari tentativi al fine di trovare il perfetto utilizzo e posizionamento dei finecorsa unidirezionali atto a risolvere nella maniere più efficiente e sicura il contrasto di segnali sulle bistabili, si va a redigere lo schema definitivo dell'impianto definitivo.
+
+\subsection{Descrizione Esercizio 2}
+\dots
+
+\section{Conclusioni}
+\subsection{Conclusioni Esercizio 1}
+\dots
+\subsection{Conclusioni Esercizio 2}
+\dots
+
+
+\end{document}
